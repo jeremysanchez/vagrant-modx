@@ -46,6 +46,9 @@ unzip -q tzupdate.zip
 sudo echo "date.timezone=\"$(./tzupdate-master/tzupdate -p)\"" >> /etc/php5/apache2/php.ini
 sudo echo "display_errors = On" >> /etc/php5/apache2/php.ini
 
+echo "Configuring Apache site"
+sudo rm /etc/apache2/sites-enabled/*
+sudo ln -s /vagrant/vagrantconf/modx-apache.conf /etc/apache2/sites-enabled/modx-apache.conf
 # restart once for all
 sudo service apache2 restart
 sudo service mysql restart
