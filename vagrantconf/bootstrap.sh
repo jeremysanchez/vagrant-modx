@@ -43,7 +43,7 @@ cd ~
 # set php timezone
 echo "Configuring PHP..."
 echo "- Timezone"
-wget -q -O tzupdate.zip https://github.com/cdown/tzupdate/archive/master.zip
+wget -q -O tzupdate.zip https://github.com/victorhaggqvist/tzupdate/archive/master.zip
 unzip -q tzupdate.zip
 sudo echo "date.timezone=\"$(./tzupdate-master/tzupdate -p)\"" >> /etc/php5/apache2/php.ini
 echo "- Display Errors = On"
