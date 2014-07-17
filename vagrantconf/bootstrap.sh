@@ -26,13 +26,8 @@ mysql -u root -proot -e "source /vagrant/vagrantconf/bootstrap.sql"
 echo 'MySQL config\nuser: root\npassword: root'
 
 # modx
-
-# via modx
-#wget http://modx.com/download/direct/modx-2.2.14-pl.zip
-
-# from aws
 echo "Getting MODx..."
-wget -q http://modx.s3.amazonaws.com/releases/2.2.14/modx-2.2.14-pl.zip
+wget -q https://modx.s3.amazonaws.com/releases/2.3.0/modx-2.3.0-pl.zip
 
 # unzip and put to place
 unzip -q modx-2.2.14-pl.zip
