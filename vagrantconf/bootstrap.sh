@@ -27,10 +27,10 @@ echo 'MySQL config\nuser: root\npassword: root'
 
 # modx
 echo "Getting MODx..."
-wget -q https://modx.s3.amazonaws.com/releases/2.3.0/modx-2.3.0-pl.zip
+wget -q https://modx.s3.amazonaws.com/releases/2.3.0/modx-2.3.0-pl.zip -o modx.zip
 
 # unzip and put to place
-unzip -q modx-2.2.14-pl.zip
+unzip -q modx.zip
 cd modx*
 cp -r * /vagrant/public
 cd ~
