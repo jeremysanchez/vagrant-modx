@@ -27,7 +27,7 @@ echo 'MySQL config\nuser: root\npassword: root'
 
 # modx
 echo "Getting MODx..."
-wget -q https://modx.s3.amazonaws.com/releases/2.3.0/modx-2.3.0-pl.zip -o modx.zip
+wget -q -O modx.zip https://modx.s3.amazonaws.com/releases/2.3.0/modx-2.3.0-pl.zip
 
 # unzip and put to place
 unzip -q modx.zip
