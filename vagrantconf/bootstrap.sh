@@ -27,7 +27,7 @@ echo 'MySQL config\nuser: root\npassword: root'
 
 # modx
 echo "Getting MODx..."
-wget -q -O modx.zip https://modx.s3.amazonaws.com/releases/2.3.0/modx-2.3.0-pl.zip
+wget -q -O modx.zip http://modx.com/download/latest/
 
 # unzip and put to place
 unzip -q modx.zip
@@ -47,6 +47,9 @@ sudo echo "display_errors = On" >> /etc/php5/apache2/php.ini
 echo "Configuring Apache site"
 sudo rm /etc/apache2/sites-enabled/*
 sudo ln -s /vagrant/vagrantconf/modx-apache.conf /etc/apache2/sites-enabled/modx-apache.conf
+
+# change /var/lock/apache2 owner to vagrant
+sudo chown vagrant:vagrant /var/lock/apache2/
 
 # restart once for all
 sudo service apache2 restart
