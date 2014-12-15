@@ -4,9 +4,10 @@ Vagrant-MODx
 MODx bootstrap for Vagrant in plain bash.
 
 This will setup a MODx env that it ready to run the setup at http://127.0.0.1/setup.
-- Webserver at 80
-- MySQL sever at 443
+
 (requires Vagrant Triggers Plugin)
+- Webserver at 80
+- MySQL sever at 443 
 
 The MODx install will be in the directory of the Vagrantfile in /public (which gives /vagrant/public in the VM).
 
