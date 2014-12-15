@@ -12,8 +12,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty32"
   config.vm.provision :shell, :path => "vagrantconf/bootstrap.sh"
-  config.vm.network :forwarded_port, host: 4567, guest: 80   # apache
-  config.vm.network :forwarded_port, host: 4568, guest: 3306 # mysql
+  config.vm.network :forwarded_port, host: 8080, guest: 80   # apache
+  config.vm.network :forwarded_port, host: 8443, guest: 443   # apache
+  config.vm.network :forwarded_port, host: 3306, guest: 3306 # mysql
+
+  config.vm.provision "shell", inline: "service apache2 restart", run: "always"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -122,4 +125,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+  config.trigger.after [:provision, :up, :reload] do
+      system('echo "
+rdr pass on lo0 inet proto tcp from any to 127.0.0.1 port 80 -> 127.0.0.1 port 8080  
+rdr pass on lo0 inet proto tcp from any to 127.0.0.1 port 443 -> 127.0.0.1 port 8443  
+" | sudo pfctl -ef - > /dev/null 2>&1; echo "==> Fowarding Ports: 80 -> 8080, 443 -> 8443"')  
+  end
+
+  config.trigger.after [:halt, :destroy, :suspend] do
+    system("sudo pfctl -F all -f /etc/pf.conf >/dev/null 2>&1; echo '==> Removing Port Forwarding'")
+  end
+  
 end
