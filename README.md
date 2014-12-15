@@ -7,7 +7,7 @@ This will setup a MODx env that it ready to run the setup at http://127.0.0.1/se
 - Webserver at 80*
 - MySQL sever at 443* 
 
-(*requires Vagrant Triggers plugin)
+*requires vagrant-triggers plugin
 
 The MODx install will be in the directory of the Vagrantfile in /public (which gives /vagrant/public in the VM).
 
@@ -23,3 +23,9 @@ __MySQL__
 - User: root
 - Password: root
 - Database: modx
+
+#Notes
+In order to make the port mapping work correctly, you must first instal the vagrant-triggers plugin:
+```
+vagrant plugin install vagrant-triggers
+```
